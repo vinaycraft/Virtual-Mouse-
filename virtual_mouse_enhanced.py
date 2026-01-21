@@ -265,16 +265,17 @@ class VirtualMouse:
                 
                 if results.multi_hand_landmarks:
                     hand_landmarks = results.multi_hand_landmarks[0]
+                    landmarks = hand_landmarks.landmark
                     
                     # Detect gesture
-                    gesture = self.detect_gesture(hand_landmarks.landmark)
+                    gesture = self.detect_gesture(landmarks)
                     
                     # Execute action
                     if gesture:
-                        self.execute_action(gesture, hand_landmarks.landmark)
+                        self.execute_action(gesture, landmarks)
                     
                     # Draw interface
-                    self.draw_interface(frame, hand_landmarks.landmark, gesture)
+                    self.draw_interface(frame, hand_landmarks, gesture)
                 else:
                     # Show "No hand detected" message
                     cv2.putText(frame, "No hand detected", (frame.shape[1]//2 - 100, frame.shape[0]//2), 
