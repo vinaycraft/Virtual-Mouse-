@@ -192,11 +192,13 @@ class VirtualMouse:
             
             pyautogui.moveTo(bounded_x, bounded_y)
     
-    def draw_interface(self, frame, landmarks, gesture):
+    def draw_interface(self, frame, hand_landmarks, gesture):
         """Draw enhanced visual interface"""
+        landmarks = hand_landmarks.landmark
+        
         # Draw hand landmarks with custom styling
         self.mp_drawing.draw_landmarks(
-            frame, landmarks, self.mp_hands.HAND_CONNECTIONS,
+            frame, hand_landmarks, self.mp_hands.HAND_CONNECTIONS,
             self.mp_drawing.DrawingSpec(color=(0, 255, 0), thickness=2, circle_radius=2),
             self.mp_drawing.DrawingSpec(color=(0, 0, 255), thickness=2)
         )
